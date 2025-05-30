@@ -34,8 +34,10 @@ export async function analyzePlagiarism(req: Request, res: Response) {
     res.json({
       id: analysis.id,
       ...result,
-      analysisTime: "2-3 seconds", // Mock timing for demo purposes
+      analysisTime: "2-3 seconds",    // fallback duration
+      createdAt:    analysis.createdAt.toISOString(),    // <-- the real timestamp
     });
+
   } catch (error) {
     console.error("Error analyzing plagiarism:", error);
     

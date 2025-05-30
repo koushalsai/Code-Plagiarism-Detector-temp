@@ -9,6 +9,11 @@ import { Clock, Code, Eye, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
 import { format } from "date-fns";
 import { UserSession } from "@/lib/userSession";
+import { formatInTimeZone } from 'date-fns-tz'
+import { useQueryClient } from '@tanstack/react-query';
+
+// you can still keep your `format` import if you need it elsewhere
+
 
 interface AnalysisHistory {
   id: number;
@@ -37,11 +42,15 @@ export default function History() {
   const [selectedAnalysis, setSelectedAnalysis] = useState<AnalysisHistory | null>(null);
 
   const userId = UserSession.getUserId();
+    // const userId = UserSession.getUserId();
+  const qc = useQueryClient();
   
   const { data: analyses, isLoading } = useQuery({
     queryKey: [`/api/plagiarism/recent?userId=${userId}`],
     queryFn: getQueryFn({ on401: "returnNull" }),
     enabled: !!userId,
+    refetchOnMount: 'always',
+    staleTime: 0,
   });
 
   const getSimilarityColor = (percentage: number) => {
@@ -73,8 +82,14 @@ export default function History() {
             </Button>
             <h1 className="text-2xl font-bold text-slate-900">Analysis Details</h1>
             <p className="text-slate-600">
-              Analysis #{selectedAnalysis.id} • {format(new Date(selectedAnalysis.createdAt), "PPpp")}
+              Analysis #{selectedAnalysis.id} •{' '}
+              {formatInTimeZone(
+                selectedAnalysis.createdAt,
+                'Asia/Kolkata',
+                'PPpp'
+              )}
             </p>
+
           </div>
 
           <div className="grid lg:grid-cols-2 gap-8 mb-8">
@@ -248,7 +263,14 @@ export default function History() {
                       <div className="flex items-center space-x-6 text-sm text-slate-600 mb-3">
                         <div className="flex items-center space-x-1">
                           <Clock className="w-4 h-4" />
-                          <span>{format(new Date(analysis.createdAt), "PPp")}</span>
+                          <span>
+                            {formatInTimeZone(
+                              analysis.createdAt,        // ISO string is fine
+                              'Asia/Kolkata',            // GMT+5:30
+                              'PPp'                  // e.g. "May 30, 2025 at 11:55 AM GMT+5:30"
+                            )}
+                          </span>
+
                         </div>
                         <span>Tokens: {analysis.tokensAnalyzed}</span>
                         <span>Matches: {analysis.matchingSegments}</span>

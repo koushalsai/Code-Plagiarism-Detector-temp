@@ -135,7 +135,7 @@ export default function ResultsSection({ result, selectedLanguage }: ResultsSect
           
           <div className="space-y-4">
             <h4 className="font-semibold text-slate-900">Analysis Metadata</h4>
-            <div className="space-y-3">
+              <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-sm text-slate-600">Algorithm:</span>
                 <span className="font-medium text-slate-900">MOSS Winnowing</span>

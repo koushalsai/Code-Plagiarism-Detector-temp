@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-slate-200 mt-8 pt-6 text-center">
-          <p className="text-sm text-slate-500">© 2024 Code Plagiarism Detector. MIT License.</p>
+          <p className="text-sm text-slate-500">© 2025 Code Plagiarism Detector.</p>
         </div>
       </div>
     </footer>

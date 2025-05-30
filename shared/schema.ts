@@ -16,7 +16,10 @@ export const plagiarismAnalyses = pgTable("plagiarism_analyses", {
   tokensAnalyzed: integer("tokens_analyzed").notNull(),
   matchingSegments: integer("matching_segments").notNull(),
   matches: jsonb("matches").notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+               .defaultNow()
+               .notNull(),
+  
 });
 
 // Zod schemas

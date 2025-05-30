@@ -35,6 +35,7 @@ export default function Header() {
                 <Button 
                   variant={location === "/history" ? "default" : "ghost"}
                   size="sm"
+                  
                 >
                   <History className="w-4 h-4 mr-2" />
                   History

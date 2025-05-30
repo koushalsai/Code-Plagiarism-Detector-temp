@@ -1,31 +1,38 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { fileURLToPath, URL } from "url";
+// Import cartographer synchronously
+import { cartographer } from "@replit/vite-plugin-cartographer";
+
+const isReplitDev = process.env.NODE_ENV !== "production" && !!process.env.REPL_ID;
 
 export default defineConfig({
+  // Set the project root to the client folder
+  root: fileURLToPath(new URL("./client", import.meta.url)),
+
   plugins: [
     react(),
     runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
-      : []),
+    ...(isReplitDev ? [cartographer()] : []),
   ],
+
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      // Now @ maps to client/src
+      "@": fileURLToPath(new URL("./client/src", import.meta.url)),
+      "@shared": fileURLToPath(new URL("./shared", import.meta.url)),
+      "@assets": fileURLToPath(new URL("./attached_assets", import.meta.url)),
     },
+    extensions: [".mjs", ".js", ".ts", ".jsx", ".tsx", ".json"],
   },
-  root: path.resolve(import.meta.dirname, "client"),
+
+  optimizeDeps: {
+    include: ["lucide-react"],
+  },
+
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: fileURLToPath(new URL("./dist/public", import.meta.url)),
     emptyOutDir: true,
   },
 });
