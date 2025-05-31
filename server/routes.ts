@@ -4,6 +4,13 @@ import { storage } from "./storage";
 import { analyzePlagiarism } from "./controllers/plagiarismController";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+    app.get("/api", (_req, res) => {
+    res.json({
+      message: "API is working",
+      version: "1.0.0",
+      timestamp: new Date().toISOString(),
+    });
+  });
   // Plagiarism detection routes
   app.post("/api/plagiarism/analyze", analyzePlagiarism);
   
