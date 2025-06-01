@@ -10,12 +10,15 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-// Configure connection for Supabase
+// Configure connection pool
 const pool = new Pool({ 
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
-  }
+  },
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
 });
 
 // Test the connection

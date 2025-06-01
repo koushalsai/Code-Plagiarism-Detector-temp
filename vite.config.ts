@@ -32,6 +32,11 @@ export default defineConfig({
     host: true,
     hmr: {
       clientPort: 443,
+      path: "/_hmr"
+    },
+    headers: {
+      "Cross-Origin-Embedder-Policy": "require-corp",
+      "Cross-Origin-Opener-Policy": "same-origin"
     }
   }
 });
