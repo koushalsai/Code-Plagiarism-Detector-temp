@@ -10,14 +10,12 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-// Configure SSL for Supabase connection
-const sslConfig = process.env.NODE_ENV === 'production' 
-  ? { ssl: { rejectUnauthorized: false } }
-  : {};
-
-export const pool = new Pool({ 
+// Configure connection for Supabase
+const pool = new Pool({ 
   connectionString: process.env.DATABASE_URL,
-  ...sslConfig
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 export const db = drizzle(pool, { schema });
