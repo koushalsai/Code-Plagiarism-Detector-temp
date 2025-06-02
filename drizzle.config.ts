@@ -1,3 +1,4 @@
+// drizzle.config.ts
 import { defineConfig } from "drizzle-kit";
 
 if (!process.env.DATABASE_URL) {
@@ -5,10 +6,11 @@ if (!process.env.DATABASE_URL) {
 }
 
 export default defineConfig({
-  out: "./migrations",
+  out: "./migrations",         // ← this is where Drizzle expects to read/write .sql files and meta/
   schema: "./shared/schema.ts",
   dialect: "postgresql",
   dbCredentials: {
     url: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
   },
 });

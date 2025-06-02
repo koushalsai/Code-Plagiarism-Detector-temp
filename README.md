@@ -58,6 +58,22 @@ CREATE DATABASE plagiarism_detector;
 - Use services like Supabase, Neon, or Railway
 - Get your connection string from the provider
 
+##### Supabase Setup Steps
+1. Go to [Supabase](https://supabase.com/) and sign up or log in.
+2. Create a new project and choose a name, password, and region.
+3. Once the project is created, go to the **Database** section and note your **connection string** (found under Project Settings > Database > Connection string).
+4. In the SQL editor, run:
+   ```sql
+   CREATE DATABASE plagiarism_detector;
+   ```
+   (If not allowed, use the default database provided by Supabase.)
+5. In your project's `.env` file, set `DATABASE_URL` to your Supabase connection string. It should look like:
+   ```env
+   DATABASE_URL="postgresql://postgres:<your-password>@<host>:<port>/<database>"
+   ```
+6. Make sure your IP is allowed in the Supabase database settings (Project Settings > Database > Connection Pooling > Allowed IP addresses).
+7. Continue with the migration and setup steps below.
+
 ### 4. Environment Configuration
 
 Create a `.env` file in the project root:

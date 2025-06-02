@@ -1,0 +1,117 @@
+{
+  "id": "2e290a8e-06cd-4671-b66f-5f931a060766",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.plagiarism_analyses": {
+      "name": "plagiarism_analyses",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "language": {
+          "name": "language",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "code1": {
+          "name": "code1",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "code2": {
+          "name": "code2",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "similarity_percentage": {
+          "name": "similarity_percentage",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "structural_similarity": {
+          "name": "structural_similarity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "control_flow": {
+          "name": "control_flow",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "logic_patterns": {
+          "name": "logic_patterns",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "variable_renaming": {
+          "name": "variable_renaming",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tokens_analyzed": {
+          "name": "tokens_analyzed",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "matching_segments": {
+          "name": "matching_segments",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "matches": {
+          "name": "matches",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

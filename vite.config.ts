@@ -1,20 +1,25 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+// import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { fileURLToPath, URL } from "url";
 // Import cartographer synchronously
-import { cartographer } from "@replit/vite-plugin-cartographer";
+// import { cartographer } from "@replit/vite-plugin-cartographer";
 
-const isReplitDev = process.env.NODE_ENV !== "production" && !!process.env.REPL_ID;
+// const isReplitDev = process.env.NODE_ENV !== "production" && !!process.env.REPL_ID;
 
 export default defineConfig({
   // Set the project root to the client folder
   root: fileURLToPath(new URL("./client", import.meta.url)),
 
+  // plugins: [
+  //   react(),
+  //   runtimeErrorOverlay(),
+  //   ...(isReplitDev ? [cartographer()] : []),
+  // ],
   plugins: [
     react(),
-    runtimeErrorOverlay(),
-    ...(isReplitDev ? [cartographer()] : []),
+    // runtimeErrorOverlay(),
+    // ...(isReplitDev ? [cartographer()] : []),
   ],
 
   resolve: {
