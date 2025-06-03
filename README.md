@@ -243,9 +243,7 @@ Ensure your `.env` file is in the project root and contains valid database crede
 4. Push to branch: `git push origin feature-name`
 5. Submit a pull request
 
-## License
 
-MIT License - see LICENSE file for details.
 
 ## Support
 
