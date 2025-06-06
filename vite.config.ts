@@ -1,30 +1,20 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-// import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { fileURLToPath, URL } from "url";
-// Import cartographer synchronously
-// import { cartographer } from "@replit/vite-plugin-cartographer";
-
-// const isReplitDev = process.env.NODE_ENV !== "production" && !!process.env.REPL_ID;
 
 export default defineConfig({
-  // Set the project root to the client folder
+  // Set project root to the client directory
   root: fileURLToPath(new URL("./client", import.meta.url)),
 
-  // plugins: [
-  //   react(),
-  //   runtimeErrorOverlay(),
-  //   ...(isReplitDev ? [cartographer()] : []),
-  // ],
   plugins: [
     react(),
+    // Optional dev plugins (uncomment if needed)
     // runtimeErrorOverlay(),
     // ...(isReplitDev ? [cartographer()] : []),
   ],
 
   resolve: {
     alias: {
-      // Now @ maps to client/src
       "@": fileURLToPath(new URL("./client/src", import.meta.url)),
       "@shared": fileURLToPath(new URL("./shared", import.meta.url)),
       "@assets": fileURLToPath(new URL("./attached_assets", import.meta.url)),
@@ -37,7 +27,7 @@ export default defineConfig({
   },
 
   build: {
-    outDir: fileURLToPath(new URL("./dist/public", import.meta.url)),
+    outDir: fileURLToPath(new URL("../dist/public", import.meta.url)), // Output goes to dist/public
     emptyOutDir: true,
   },
 });

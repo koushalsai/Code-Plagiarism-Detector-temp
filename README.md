@@ -152,6 +152,7 @@ Create a `.vscode/settings.json` file in your project:
 ├── client/                 # Frontend React application
 │   ├── src/
 │   │   ├── components/     # React components
+│   │   │   └── ui/         # UI subcomponents (buttons, dialogs, etc.)
 │   │   ├── pages/          # Page components
 │   │   ├── lib/            # Utilities and configurations
 │   │   └── hooks/          # Custom React hooks
@@ -160,15 +161,21 @@ Create a `.vscode/settings.json` file in your project:
 │   ├── controllers/        # Request handlers
 │   ├── services/           # Business logic (MOSS algorithm)
 │   ├── utils/              # Helper functions and tokenizers
-│   ├── db.ts              # Database connection
-│   ├── storage.ts         # Data access layer
-│   └── routes.ts          # API routes
+│   ├── db.ts               # Database connection
+│   ├── storage.ts          # Data access layer
+│   └── routes.ts           # API routes
 ├── shared/                 # Shared types and schemas
-│   └── schema.ts          # Database schema and validation
+│   └── schema.ts           # Database schema and validation
+├── migrations/             # Database migration files
+│   ├── 0000_panoramic_true_believers.sql
+│   └── meta/               # Migration metadata
 ├── package.json
-├── drizzle.config.ts      # Database configuration
-├── tailwind.config.ts     # Tailwind CSS configuration
-└── vite.config.ts         # Vite build configuration
+├── drizzle.config.ts       # Database configuration
+├── tailwind.config.ts      # Tailwind CSS configuration
+├── vite.config.ts          # Vite build configuration
+├── postcss.config.js       # PostCSS configuration
+├── tsconfig.json           # TypeScript configuration
+└── README.md
 ```
 
 ## Available Scripts
