@@ -65,11 +65,15 @@
 
 @layer components {
   .language-btn {
-    @apply flex flex-col items-center justify-center p-4 rounded-lg border-2 border-slate-200 bg-white hover:border-primary hover:bg-blue-50 transition-all duration-200 cursor-pointer;
+    @apply flex flex-col items-center justify-center p-4 rounded-lg border-2 bg-white hover:border-primary hover:bg-blue-50 transition-all duration-200 cursor-pointer;
+    /* Dark mode overrides */
+    @apply dark:bg-card dark:border-muted dark:hover:border-primary dark:hover:bg-primary/10;
   }
   
   .language-btn.active {
     @apply border-primary bg-blue-50 text-primary;
+    /* Dark mode overrides */
+    @apply dark:border-primary dark:bg-primary/10 dark:text-primary;
   }
   
   .language-btn span {

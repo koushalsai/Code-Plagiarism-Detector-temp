@@ -20,7 +20,7 @@ export default function CodeEditor({ title, value, onChange, language, onClear, 
   const { toast } = useToast();
 
   useEffect(() => {
-    const lines = value ? value.split('\n').length : 0;
+    const lines = value ? value.split("\n").length : 0;
     setLineCount(lines);
     setCharCount(value.length);
   }, [value]);
@@ -28,38 +28,28 @@ export default function CodeEditor({ title, value, onChange, language, onClear, 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(value);
-      toast({
-        title: "Copied",
-        description: "Code copied to clipboard",
-      });
-    } catch (error) {
-      toast({
-        title: "Copy Failed",
-        description: "Failed to copy code to clipboard",
-        variant: "destructive",
-      });
+      toast({ title: "Copied", description: "Code copied to clipboard" });
+    } catch {
+      toast({ title: "Copy Failed", description: "Failed to copy code to clipboard", variant: "destructive" });
     }
   };
 
   const handleClear = () => {
     onClear();
-    toast({
-      title: "Cleared",
-      description: "Code editor cleared",
-    });
+    toast({ title: "Cleared", description: "Code editor cleared" });
   };
 
   return (
-    <Card className="shadow-sm border-slate-200 overflow-hidden">
-      <div className="bg-slate-100 px-4 py-3 border-b border-slate-200">
+    <Card className="shadow-sm border-border dark:border-muted overflow-hidden">
+      <div className="bg-muted dark:bg-card px-4 py-3 border-b border-border dark:border-muted">
         <div className="flex items-center justify-between">
-          <h3 className="font-medium text-slate-900">{title}</h3>
+          <h3 className="font-medium text-foreground">{title}</h3>
           <div className="flex items-center space-x-2">
             <Button
               variant="ghost"
               size="sm"
               onClick={handleClear}
-              className="text-slate-400 hover:text-slate-600"
+              className="text-muted-foreground hover:text-foreground"
             >
               <Trash2 className="w-4 h-4" />
             </Button>
@@ -67,7 +57,7 @@ export default function CodeEditor({ title, value, onChange, language, onClear, 
               variant="ghost"
               size="sm"
               onClick={handleCopy}
-              className="text-slate-400 hover:text-slate-600"
+              className="text-muted-foreground hover:text-foreground"
             >
               <Copy className="w-4 h-4" />
             </Button>
@@ -80,11 +70,10 @@ export default function CodeEditor({ title, value, onChange, language, onClear, 
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
           className="w-full h-80 p-4 font-mono text-sm bg-slate-900 text-slate-100 border-0 resize-none focus:outline-none focus:ring-0 rounded-none"
-          style={{ backgroundColor: 'rgb(15 23 42)' }}
         />
       </CardContent>
-      <div className="bg-slate-50 px-4 py-2 border-t border-slate-200">
-        <span className="text-xs text-slate-500">
+      <div className="bg-muted dark:bg-card px-4 py-2 border-t border-border dark:border-muted">
+        <span className="text-xs text-muted-foreground">
           Lines: {lineCount} | Characters: {charCount}
         </span>
       </div>

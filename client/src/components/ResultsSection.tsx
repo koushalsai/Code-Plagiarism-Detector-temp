@@ -76,33 +76,33 @@ export default function ResultsSection({ result, selectedLanguage }: ResultsSect
   const displayedMatches = showAllMatches ? result.matches : result.matches.slice(0, 1);
 
   return (
-    <Card className="shadow-sm border-slate-200 mb-8">
+    <Card className="shadow-sm border-border dark:border-muted mb-8">
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-slate-900">Analysis Results</h2>
-          <div className="flex items-center space-x-2 text-sm text-slate-500">
+          <h2 className="text-xl font-semibold text-foreground">Analysis Results</h2>
+          <div className="flex items-center space-x-2 text-sm text-muted-foreground">
             <CheckCircle className="w-4 h-4 text-accent" />
             <span>Analysis completed in {result.analysisTime}</span>
           </div>
         </div>
 
         {/* Similarity Score */}
-        <div className={`bg-gradient-to-r ${getSimilarityBg(result.similarityPercentage)} border rounded-lg p-6 mb-6`}>
+        <div className={`bg-gradient-to-r ${getSimilarityBg(result.similarityPercentage)} rounded-lg p-6 mb-6 border`}> 
           <div className="flex items-center justify-between mb-4">
             <h3 className={`text-lg font-semibold ${getSimilarityColor(result.similarityPercentage)}`}>
               {getSimilarityStatus(result.similarityPercentage)}
             </h3>
-            <div className={`text-3xl font-bold ${getSimilarityColor(result.similarityPercentage)}`}>
+            <div className={`text-3xl font-bold ${getSimilarityColor(result.similarityPercentage)}`}> 
               {result.similarityPercentage}%
             </div>
           </div>
-          <div className={`w-full ${getSimilarityProgressBg(result.similarityPercentage)} rounded-full h-3`}>
-            <div 
+          <div className={`w-full ${getSimilarityProgressBg(result.similarityPercentage)} rounded-full h-3`}>  
+            <div
               className={`${getSimilarityProgressColor(result.similarityPercentage)} h-3 rounded-full transition-all duration-300`}
               style={{ width: `${result.similarityPercentage}%` }}
             />
           </div>
-          <p className={`text-sm mt-2 ${getSimilarityColor(result.similarityPercentage).replace('text-', 'text-').replace('-600', '-700')}`}>
+          <p className={`text-sm mt-2 ${getSimilarityColor(result.similarityPercentage).replace('text-','text-').replace('-600','-700')}`}>
             {getSimilarityDescription(result.similarityPercentage)}
           </p>
         </div>
@@ -110,47 +110,47 @@ export default function ResultsSection({ result, selectedLanguage }: ResultsSect
         {/* Detailed Analysis */}
         <div className="grid md:grid-cols-2 gap-6 mb-6">
           <div className="space-y-4">
-            <h4 className="font-semibold text-slate-900">Detection Details</h4>
+            <h4 className="font-semibold text-foreground">Detection Details</h4>
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-600">Structural Similarity:</span>
-                <span className="font-medium text-slate-900">{result.structuralSimilarity}%</span>
+                <span className="text-sm text-muted-foreground">Structural Similarity:</span>
+                <span className="font-medium text-foreground">{result.structuralSimilarity}%</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-600">Variable Renaming:</span>
-                <span className={`font-medium ${result.variableRenaming ? 'text-accent' : 'text-slate-900'}`}>
+                <span className="text-sm text-muted-foreground">Variable Renaming:</span>
+                <span className={`font-medium ${result.variableRenaming ? 'text-accent' : 'text-foreground'}`}> 
                   {result.variableRenaming ? 'Detected' : 'None'}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-600">Control Flow:</span>
-                <span className="font-medium text-slate-900">{result.controlFlow}%</span>
+                <span className="text-sm text-muted-foreground">Control Flow:</span>
+                <span className="font-medium text-foreground">{result.controlFlow}%</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-600">Logic Patterns:</span>
-                <span className="font-medium text-slate-900">{result.logicPatterns}%</span>
+                <span className="text-sm text-muted-foreground">Logic Patterns:</span>
+                <span className="font-medium text-foreground">{result.logicPatterns}%</span>
               </div>
             </div>
           </div>
           
           <div className="space-y-4">
-            <h4 className="font-semibold text-slate-900">Analysis Metadata</h4>
+            <h4 className="font-semibold text-foreground">Analysis Metadata</h4>
               <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-600">Algorithm:</span>
-                <span className="font-medium text-slate-900">MOSS Winnowing</span>
+                <span className="text-sm text-muted-foreground">Algorithm:</span>
+                <span className="font-medium text-foreground">MOSS Winnowing</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-600">Language:</span>
-                <span className="font-medium text-slate-900 capitalize">{selectedLanguage}</span>
+                <span className="text-sm text-muted-foreground">Language:</span>
+                <span className="font-medium text-foreground capitalize">{selectedLanguage}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-600">Tokens Analyzed:</span>
-                <span className="font-medium text-slate-900">{result.tokensAnalyzed}</span>
+                <span className="text-sm text-muted-foreground">Tokens Analyzed:</span>
+                <span className="font-medium text-foreground">{result.tokensAnalyzed}</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-slate-600">Matching Segments:</span>
-                <span className="font-medium text-slate-900">{result.matchingSegments}</span>
+                <span className="text-sm text-muted-foreground">Matching Segments:</span>
+                <span className="font-medium text-foreground">{result.matchingSegments}</span>
               </div>
             </div>
           </div>
@@ -158,34 +158,34 @@ export default function ResultsSection({ result, selectedLanguage }: ResultsSect
 
         {/* Matching Code Segments */}
         {result.matches.length > 0 && (
-          <div className="border-t border-slate-200 pt-6">
-            <h4 className="font-semibold text-slate-900 mb-4">Matching Code Segments</h4>
+          <div className="border-t border-border dark:border-muted pt-6">
+            <h4 className="font-semibold text-foreground mb-4">Matching Code Segments</h4>
             
             {displayedMatches.map((match) => (
-              <div key={match.id} className="bg-slate-50 rounded-lg p-4 mb-4">
+              <div key={match.id} className="bg-muted rounded-lg dark:bg-card p-4 mb-4">
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium text-slate-700">Match #{match.id}</span>
-                  <span className="text-sm text-slate-500">
+                  <span className="text-sm font-medium text-foreground">Match #{match.id}</span>
+                  <span className="text-sm text-muted-foreground">
                     Lines {match.code1Lines} vs {match.code2Lines}
                   </span>
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <div className="text-xs text-slate-500 mb-2">Sample 1:</div>
-                    <pre className="bg-slate-900 text-slate-100 p-3 rounded text-xs font-mono overflow-x-auto">
+                    <div className="text-xs text-muted-foreground mb-2">Sample 1:</div>
+                    <pre className="bg-background dark:bg-card text-foreground p-3 rounded text-xs font-mono overflow-x-auto">
                       <code>{match.code1Content}</code>
                     </pre>
                   </div>
                   <div>
-                    <div className="text-xs text-slate-500 mb-2">Sample 2:</div>
-                    <pre className="bg-slate-900 text-slate-100 p-3 rounded text-xs font-mono overflow-x-auto">
+                    <div className="text-xs text-muted-foreground mb-2">Sample 2:</div>
+                    <pre className="bg-background dark:bg-card text-foreground p-3 rounded text-xs font-mono overflow-x-auto">
                       <code>{match.code2Content}</code>
                     </pre>
                   </div>
                 </div>
                 {match.variableChanges.length > 0 && (
-                  <div className="mt-2 text-xs text-slate-600">
-                    <AlertTriangle className="w-3 h-3 text-amber-500 mr-1 inline" />
+                  <div className="mt-2 text-xs text-muted-foreground">
+                    <AlertTriangle className="w-3 h-3 text-accent mr-1 inline" />
                     Variable changes detected: {match.variableChanges.join(', ')}
                   </div>
                 )}
@@ -196,7 +196,7 @@ export default function ResultsSection({ result, selectedLanguage }: ResultsSect
               <Button
                 variant="ghost"
                 onClick={() => setShowAllMatches(!showAllMatches)}
-                className="text-sm text-primary hover:text-blue-700 font-medium"
+                className="text-sm text-primary hover:text-primary-foreground font-medium"
               >
                 {showAllMatches ? (
                   <>
